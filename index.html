@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chúc mừng 20/10 💌</title>
+<style>
+body {
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff0f6;
+  font-family:"Segoe UI",system-ui,Arial;
+  overflow:hidden;
+}
+.hidden { display:none !important; }
+
+.center {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  min-height:100vh;
+}
+
+.letter {
+  width:360px;
+  padding:30px;
+  text-align:center;
+  border-radius:14px;
+  background:linear-gradient(180deg,#ffd8e8,#fff0f6);
+  box-shadow:0 10px 30px rgba(255,95,151,0.12);
+  cursor:pointer;
+  transition:all 0.8s ease;
+}
+
+.heart { font-size:56px; margin:10px 0; color:#e91e63; }
+
+.photo img {
+  width:340px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  cursor:pointer;
+  transition:transform 0.4s ease;
+}
+.photo img:hover { transform:scale(1.02); }
+
+.message {
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+  gap:20px;
+  max-width:800px;
+}
+.message p {
+  max-width:450px;
+  padding:10px;
+  background:#fff8fb;
+  border-radius:12px;
+  border:2px solid #ffd2e6;
+  text-align:left;
+  line-height:1.5;
+  font-size:15px;
+  display:flex;
+  align-items:center;
+}
+.message img {
+  height:100%;
+  border-radius:12px;
+  object-fit:cover;
+  width:auto;
+  max-width:200px;
+  transition:transform 0.4s ease;
+}
+.message img:hover { transform:scale(1.05); }
+
+.final {
+  font-size:32px;
+  color:#ff2e7a;
+  font-style:italic;
+  text-align:center;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+
+.heart-float {
+  position: fixed;
+  color: #ff4d88;
+  font-size: 20px;
+  animation: floatUp 2s ease-out forwards;
+  pointer-events: none;
+  opacity:0.9;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity:1; }
+  100% { transform: translateY(-150px) scale(1.6); opacity:0; }
+}
+</style>
+</head>
+<body>
+
+<div class="center">
+
+  <!-- BỨC THƯ -->
+  <div id="letter" class="letter">
+    <h2>Gửi tặng vợ iu 💌</h2>
+    <div class="heart">❤️</div>
+    <div>(Click vào bức thư để mở quà)</div>
+  </div>
+
+  <!-- ẢNH THỨ NHẤT -->
+  <div id="photo" class="photo hidden">
+    <img id="img1" src="https://i.ibb.co/yF38b0rq/IMG-9628.jpg" alt="Ảnh tặng em">
+  </div>
+
+  <!-- ĐOẠN VĂN + ẢNH KÈM -->
+  <div id="message" class="message hidden">
+    <p>Nhân ngày 20/10, chồng xin chúc vợ iu có một ngày thật trọn vẹn và vui vẻ. Mong rằng em sẽ thích với món quà nhỏ này của anh dành tặng cho em :"))); có thể đọc tới đây em cười thối ruột mà thoai khum sao, coi như đã thành công tạo tiếng cười vui vẻ cho em rùi. Hy vọng rằng em sẽ không tủi thân và yêu anh nhiều hơn nữa nhaaa.<br><br>Anh yêu vợ nhìu 😘</p>
+    <img id="img2" src="https://i.ibb.co/xtbPBcP6/IMG-2355.jpg" alt="Ảnh kèm lời chúc">
+  </div>
+
+  <!-- ĐOẠN KẾT -->
+  <div id="final" class="final hidden">Design by Chồng em, PĐT 👮‍♂️</div>
+
+</div>
+
+<script>
+const letter = document.getElementById('letter');
+const photo = document.getElementById('photo');
+const message = document.getElementById('message');
+const final = document.getElementById('final');
+
+// TẠO TIM BAY
+function createHearts() {
+  for(let i=0;i<6;i++){
+    const heart=document.createElement('div');
+    heart.classList.add('heart-float');
+    heart.textContent='💖';
+    heart.style.left=`${Math.random()*window.innerWidth}px`;
+    heart.style.top=`${window.innerHeight-100}px`;
+    heart.style.fontSize=`${18+Math.random()*12}px`;
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),2000);
+  }
+}
+
+// HIỆU ỨNG CHUYỂN BƯỚC
+function transition(hideEl, showEl){
+  createHearts();
+  hideEl.style.transition = "all 0.8s ease";
+  hideEl.style.opacity = 0;
+  setTimeout(()=>{
+    hideEl.classList.add('hidden');
+    hideEl.style.opacity = 1; // reset cho lần sau
+    showEl.classList.remove('hidden');
+    showEl.classList.add('fade-in');
+  },800);
+}
+
+// 1️⃣ Click thư → ẢNH
+letter.addEventListener('click',()=>transition(letter,photo));
+
+// 2️⃣ Click ẢNH → MESSAGE
+document.getElementById('img1').addEventListener('click',()=>transition(photo,message));
+
+// 3️⃣ Click MESSAGE hoặc ẢNH KÈM → FINAL
+function showFinal(){
+  createHearts();
+  message.style.transition = "all 0.8s ease";
+  message.style.opacity = 0;
+  setTimeout(()=>{
+    message.classList.add('hidden'); // ẩn message hoàn toàn
+    message.style.opacity = 1; // reset
+    final.classList.remove('hidden');
+    final.classList.add('fade-in');
+    final.style.opacity='1';
+  },800);
+}
+message.addEventListener('click', showFinal);
+document.getElementById('img2').addEventListener('click', showFinal);
+
+</script>
+</body>
+</html>
