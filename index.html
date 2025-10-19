@@ -1,0 +1,181 @@
+<!doctype html>
+
+<html lang="vi">
+
+<head>
+
+<meta charset="utf-8" />
+
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Chúc mừng 20/10 💌</title>
+
+<style>
+
+  body {
+
+    margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+
+    background:#fff0f6;font-family:"Segoe UI",system-ui,Arial;
+
+  }
+
+  .hidden{display:none}
+
+  .fade{opacity:0;transition:opacity 1s ease}
+
+  .show{opacity:1;transition:opacity 1s ease}
+
+  .letter {
+
+    width:360px;padding:30px;text-align:center;
+
+    border-radius:14px;background:linear-gradient(180deg,#ffd8e8,#fff0f6);
+
+    box-shadow:0 10px 30px rgba(255,95,151,0.12);
+
+    cursor:pointer;
+
+  }
+
+  .heart{font-size:56px;margin:10px 0;color:#e91e63}
+
+  .photo, .message {text-align:center;transition:opacity 1s ease, transform 1s ease;}
+
+  .photo img {width:340px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.1);cursor:pointer}
+
+  .message img {width:150px;border-radius:12px;margin:10px}
+
+  .message p {max-width:600px;margin:0 auto;padding:10px;background:#fff8fb;border-radius:12px;border:2px solid #ffd2e6;}
+
+  .final {font-size:32px;color:#ff2e7a;font-style:italic;text-align:center;opacity:0;transition:opacity 1.2s ease}
+
+  .center{display:flex;flex-direction:column;align-items:center;gap:20px}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="center">
+
+
+
+  <!-- Bức thư -->
+
+  <div id="letter" class="letter">
+
+    <h2>Gửi tặng vợ iu 💌</h2>
+
+    <div class="heart">❤️</div>
+
+    <div>(Click vào bức thư để mở quà)</div>
+
+  </div>
+
+
+
+  <!-- Ảnh sau khi click thư -->
+
+  <div id="photo" class="photo hidden">
+
+    <img id="img1" src="https://i.ibb.co/yF38b0rq/IMG-9628.jpg" alt="Ảnh tặng em">
+
+  </div>
+
+
+
+  <!-- Đoạn văn kèm ảnh -->
+
+  <div id="message" class="message hidden">
+
+    <p>Nhân ngày 20/10, chồng xin chúc vợ iu có một ngày thật trọn vẹn và vui vẻ. Mong rằng em sẽ thích với món quà nhỏ này của anh dành tặng cho em :"))); có thể đọc tới đây em cười thối ruột mà thoai khum sao, coi như đã thành công tạo tiếng cười vui vẻ cho em rùi. Hy vọng rằng em sẽ không tủi thân và yêu anh nhiều hơn nữa nhaaa.<br><br>Anh yêu vợ nhìu 😘</p>
+
+    <img id="img2" src="https://i.ibb.co/xtbPBcP6/IMG-2355.jpg" alt="Ảnh kèm lời chúc">
+
+  </div>
+
+
+
+  <!-- Phần cuối -->
+
+  <div id="final" class="final">Design by Chồng em, PĐT 👮‍♂️</div>
+
+
+
+</div>
+
+
+
+<script>
+
+const letter = document.getElementById('letter');
+
+const photo = document.getElementById('photo');
+
+const message = document.getElementById('message');
+
+const final = document.getElementById('final');
+
+
+
+letter.addEventListener('click', () => {
+
+  letter.classList.add('fade');
+
+  setTimeout(() => {
+
+    letter.classList.add('hidden');
+
+    photo.classList.remove('hidden');
+
+    photo.classList.add('show');
+
+  }, 800);
+
+});
+
+
+
+document.getElementById('img1').addEventListener('click', () => {
+
+  photo.classList.add('fade');
+
+  setTimeout(() => {
+
+    photo.classList.add('hidden');
+
+    message.classList.remove('hidden');
+
+    message.classList.add('show');
+
+  }, 800);
+
+});
+
+
+
+function showFinal(){
+
+  message.classList.add('fade');
+
+  setTimeout(() => {
+
+    message.classList.add('hidden');
+
+    final.style.opacity='1';
+
+  }, 800);
+
+}
+
+message.addEventListener('click', showFinal);
+
+document.getElementById('img2').addEventListener('click', showFinal);
+
+</script>
+
+</body>
+
+</html>
